@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Додати інвестицію</h1>
+    <form method="POST" id="investmentForm">
+        {% csrf_token %}
+        <label for="investment_amount">Обсяг інвестиції:</label>
+        <input type="number" name="investment_amount" id="investment_amount" min="0.01" step="0.01" required><br>
+        <button type="submit" id="submitBtn">Відправити</button>
+    </form>
+
+    <div id="investmentOptions" style="display: none;">
+        <h2>Варіант розподілу інвестицій</h2>
+        <div>
+            <form method="POST" id="acceptForm" action="{% url 'accept_investment' %}">
+                {% csrf_token %}
+                <input type="hidden" name="symbol" value="V">
+                <input type="hidden" name="quantity" value="{{ investment_quantity.0 }}">
+                <input type="hidden" name="purchase_price" value="{{ investment_amount|floatformat }}">
+                <input type="hidden" name="stock_ticks" value="{{ stock_ticks }}">
+                <input type="hidden" name="stock_prices" value="{{ stock_prices }}">
+                <input type="hidden" name="stock_amounts" value="{{ stock_amounts }}">
+                <button type="submit">Прийняти</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="chartContainer" style="display: none;">
+        <img id="chartImage" src="/static/test.png" alt="Графік">
+    </div>
+
+    <script>
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.getElementById("investmentForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Отменить стандартное поведение формы
+            var investmentAmount = document.getElementById("investment_amount").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{% url 'add_investment' %}?investment_amount=" + encodeURIComponent(investmentAmount), true);
+            xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken")); // Добавить CSRF-токен в заголовок запроса
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var response = xhr.responseText;
+                    var parser = new DOMParser();
+                    var newContent = parser.parseFromString(response, 'text/html');
+
+                    // Обновить investmentOptions
+                    var investmentOptions = newContent.getElementById("investmentOptions");
+                    document.getElementById("investmentOptions").innerHTML = investmentOptions.innerHTML;
+                    document.getElementById("investmentOptions").style.display = "block";
+
+                    // Обновить chartImage
+                    document.getElementById("chartImage").src = newContent.getElementById("chartImage").src;
+                    document.getElementById("chartContainer").style.display = "block";
+
+                    // Скрыть кнопку "Відправити"
+                    document.getElementById("submitBtn").style.display = "none";
+                }
+            };
+            xhr.send();
+        });
+
+
+    </script>
+
+
+{% endblock %}

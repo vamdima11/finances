@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Investment Approach</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="approach">Approach:</label>
+    <select name="approach" id="approach">
+      <option value="Aggressive" {% if portfolio.approach == 'Aggressive' %}selected{% endif %}>Aggressive</option>
+      <option value="Balanced" {% if portfolio.approach == 'Balanced' %}selected{% endif %}>Balanced</option>
+      <option value="Conservative" {% if portfolio.approach == 'Conservative' %}selected{% endif %}>Conservative</option>
+    </select><br>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

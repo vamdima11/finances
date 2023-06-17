@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Прогнозування{% endblock %}
+
+{% block content %}
+    <h1>Прогнозування</h1>
+    <p>Оцінка майбутньої ринкової вартості ваших інвестицій.</p>
+    <hr>
+
+    <h2>Загальна інформація</h2>
+    <ul>
+        <li>Загальний баланс: ${{ total_balance }}</li>
+        <li>Кількість інвестицій: {{ investment_count }}</li>
+        <li>Підхід: {{ approach }}</li>
+        <li>Залишилось: {{ days_to_goal }} днів</li>
+    </ul>
+    <hr>
+{% endblock %}

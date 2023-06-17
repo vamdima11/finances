@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Прогнозування фінансів{% endblock %}</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="icon" href="/static/favicon.png" type="image/png">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Головна</a></li>
+            <li><a href="{% url 'portfolio' %}">Портфоліо</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Вийти</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Увійти</a></li>
+                <li><a href="{% url 'register' %}">Зареєструватися</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    <p>&copy; 2023 Finances predictor</p>
+</footer>
+</body>
+</html>

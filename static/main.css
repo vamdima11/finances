@@ -1,0 +1,213 @@
+/* Main Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #03A9F4;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 1rem;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+main {
+  margin: 2rem auto;
+  max-width: 800px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+main h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"] {
+  background-color: #03A9F4;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+  background-color: #0288D1;
+}
+
+/* New styles for portfolio.html */
+.portfolio-goal {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-approach {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-action-link {
+  margin-left: 1rem;
+  color: #03A9F4;
+  text-decoration: none;
+}
+
+.portfolio-action-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* Investments Table */
+table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #03A9F4;
+  color: #fff;
+}
+
+th, td {
+  text-align: left;
+  padding: 1rem;
+}
+
+th {
+  border-bottom: 2px solid #ddd;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+a.btn:hover {
+  background-color: #eee;
+}
+
+a.btn-edit {
+  background-color: #E91E63;
+  color: #fff;
+}
+
+a.btn-delete {
+  background-color: #F44336;
+  color: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-submit {
+  background-color: #03A9F4;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #0288D1;
+}
+
+.btn-edit {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #333;
+  margin-left: 1rem;
+}
+
+.btn-edit:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #fff;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  margin-left: 1rem;
+}
+
+.btn-delete:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.btn:not(:last-child) {
+  margin-bottom: 0.5rem;
+}

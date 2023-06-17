@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add Goal</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" id="amount" min="0.01" step="0.01" required><br>
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

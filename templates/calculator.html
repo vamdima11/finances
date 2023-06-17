@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Goal Calculator</h1>
+  {% if goal_amount %}
+    <h2>Forecast for achieving ${{ goal_amount }} goal</h2>
+    <p>Years to reach goal: {{ forecast_years }}</p>
+    <p>Amount to save per year: ${{ forecast_amount }}</p>
+  {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    <label for="goal_amount">Goal Amount:</label>
+    <input type="number" name="goal_amount" id="goal_amount" min="0.01" step="0.01"><br>
+    <button type="submit">Calculate</button>
+  </form>
+{% endblock %}

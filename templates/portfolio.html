@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Портфоліо {{ portfolio.user.username }}</h1>
+    <h2>Мета: ${{ highest_goal.amount }}</h2>
+    <ul>
+        {% for goal in goals %}
+            <li>
+                <button onclick="location.href='{% url 'edit_goal' goal.id %}'" class="btn btn-edit">Редагувати</button>
+                <button
+                        onclick="location.href='{% url 'delete_goal' goal.id %}'" class="btn btn-delete">Видалити
+                </button>
+            </li>
+        {% empty %}
+            <li>Мети відсутні.
+                <button onclick="location.href='{% url 'add_goal' %}'" class="btn btn-add">Додати мету</button>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Підхід: {{ portfolio.approach }}</h2>
+    <button onclick="location.href='{% url 'approach' %}'" class="btn btn-edit">Змінити підхід</button>
+
+    <button type="button" class="btn btn-calculate" onclick="location.href='{% url 'prediction' %}'">Розрахувати</button>
+
+    <h2>Інвестиції</h2>
+    <button onclick="location.href='{% url 'add_investment' %}'" class="btn btn-add">Додати інвестицію</button>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Символ</th>
+            <th>Кількість</th>
+            <th>Ціна покупки</th>
+            <th>Ринкова вартість</th>
+            <th>Дія</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for investment in investments %}
+            <tr>
+                <td>{{ investment.symbol }}</td>
+                <td>{{ investment.quantity }}</td>
+                <td>${{ investment.purchase_price }}</td>
+                <td>${{ investment.current_market_value }}</td>
+                <td class="actions">
+                    <button onclick="location.href='{% url 'edit_investment' investment.id %}'" class="btn btn-edit">
+                        Редагувати
+                    </button>
+                    <button onclick="location.href='{% url 'delete_investment' investment.id %}'"
+                            class="btn btn-delete">Видалити
+                    </button>
+                </td>
+
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Інвестицій ще немає.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2>Історія</h2>
+    <ul id="history-list">
+        {% for entry in history %}
+            <li>{{ entry.change }} ({{ entry.created_at }})</li>
+        {% empty %}
+            <li>Ще немає історії.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
